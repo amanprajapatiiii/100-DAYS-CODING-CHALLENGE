@@ -1,0 +1,20 @@
+*/ Q23: Write a program to calculate library fine based on late days as follows: */
+#include <stdio.h>
+int main() {
+    int days;
+    float fine;
+    printf("Enter number of late days: ");
+    scanf("%d", &days);
+    if(days <= 5)
+        fine = days * 0.50;
+    else if(days <= 10)
+        fine = (5 * 0.50) + (days - 5) * 1.00;
+    else if(days <= 30)
+        fine = (5 * 0.50) + (5 * 1.00) + (days - 10) * 5.00;
+    else {
+        fine = (5 * 0.50) + (5 * 1.00) + (20 * 5.00);
+        printf("Membership cancelled\n");
+    }
+    printf("Fine = Rs %.2f", fine);
+    return 0;
+}
