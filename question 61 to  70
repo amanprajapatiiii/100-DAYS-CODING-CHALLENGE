@@ -1,0 +1,388 @@
+SOL 61-
+#include <stdio.h>
+
+int main() {
+    int n, i, key, found = 0;
+    
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+    
+    int arr[n];
+    
+    printf("Enter %d elements:\n", n);
+    for(i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+    
+    printf("Enter element to search: ");
+    scanf("%d", &key);
+    
+    for(i = 0; i < n; i++) {
+        if(arr[i] == key) {
+            printf("Element found at position %d\n", i + 1);
+            found = 1;
+            break;
+        }
+    }
+    
+    if(found == 0)
+        printf("Element not found.\n");
+    
+    return 0;
+}
+
+SOL 62-
+
+#include <stdio.h>
+
+int main() {
+    int n, i, temp;
+    
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+    
+    int arr[n];
+    
+    printf("Enter %d elements:\n", n);
+    for(i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+    
+    for(i = 0; i < n / 2; i++) {
+        temp = arr[i];
+        arr[i] = arr[n - i - 1];
+        arr[n - i - 1] = temp;
+    }
+    
+    printf("Reversed array:\n");
+    for(i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    
+    return 0;
+}
+
+SOL63-
+#include <stdio.h>
+
+int main() {
+    int n1, n2, i, j;
+    
+    printf("Enter number of elements in first array: ");
+    scanf("%d", &n1);
+    int arr1[n1];
+    printf("Enter %d elements:\n", n1);
+    for(i = 0; i < n1; i++) {
+        scanf("%d", &arr1[i]);
+    }
+    
+    printf("Enter number of elements in second array: ");
+    scanf("%d", &n2);
+    int arr2[n2];
+    printf("Enter %d elements:\n", n2);
+    for(i = 0; i < n2; i++) {
+        scanf("%d", &arr2[i]);
+    }
+    
+    int merged[n1 + n2];
+    
+    for(i = 0; i < n1; i++) {
+        merged[i] = arr1[i];
+    }
+    
+    for(j = 0; j < n2; j++) {
+        merged[i + j] = arr2[j];
+    }
+    
+    printf("Merged array:\n");
+    for(i = 0; i < n1 + n2; i++) {
+        printf("%d ", merged[i]);
+    }
+    
+    return 0;
+}
+SOL64--
+
+
+#include <stdio.h>
+
+int main() {
+    long long num;
+    int digit, count[10] = {0}, max = 0, mostFreq = 0;
+    
+    printf("Enter an integer: ");
+    scanf("%lld", &num);
+    
+    if(num < 0)
+        num = -num;  // handle negative numbers
+    
+    while(num > 0) {
+        digit = num % 10;
+        count[digit]++;
+        num /= 10;
+    }
+    
+    for(int i = 0; i < 10; i++) {
+        if(count[i] > max) {
+            max = count[i];
+            mostFreq = i;
+        }
+    }
+    
+    printf("Digit that occurs the most times: %d\n", mostFreq);
+    printf("It occurs %d times.\n", max);
+    
+    return 0;
+}
+SOL 65-
+
+#include <stdio.h>
+
+int main() {
+    int n, i, key, low, high, mid, found = 0;
+    
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+    
+    int arr[n];
+    printf("Enter %d elements in sorted order:\n", n);
+    for(i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+    
+    printf("Enter element to search: ");
+    scanf("%d", &key);
+    
+    low = 0;
+    high = n - 1;
+    
+    while(low <= high) {
+        mid = (low + high) / 2;
+        
+        if(arr[mid] == key) {
+            printf("Element found at position %d\n", mid + 1);
+            found = 1;
+            break;
+        } 
+        else if(arr[mid] < key) {
+            low = mid + 1;
+        } 
+        else {
+            high = mid - 1;
+        }
+    }
+    
+    if(found == 0)
+        printf("Element not found.\n");
+    
+    return 0;
+}
+ SOL 66-#include <stdio.h>
+
+int main() {
+    int n, i, j, key;
+    
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+    
+    int arr[n + 1]; 
+    
+    printf("Enter %d elements in sorted order:\n", n);
+    for(i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+    
+    printf("Enter element to insert: ");
+    scanf("%d", &key);
+    
+
+    for(i = n - 1; (i >= 0 && arr[i] > key); i--) {
+        arr[i + 1] = arr[i];
+    }
+    
+    arr[i + 1] = key; 
+    n++; 
+    
+    printf("Array after insertion:\n");
+    for(i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    
+    return 0;
+}
+
+SOL 67-
+
+#include <stdio.h>
+
+int main() {
+    int n, pos, value, i;
+    
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+    
+    int arr[n + 1]; 
+    
+    printf("Enter %d elements:\n", n);
+    for(i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+    
+    printf("Enter position to insert (1 to %d): ", n + 1);
+    scanf("%d", &pos);
+    
+    printf("Enter value to insert: ");
+    scanf("%d", &value);
+    
+    
+    for(i = n; i >= pos; i--) {
+        arr[i] = arr[i - 1];
+    }
+    
+    arr[pos - 1] = value; 
+    n++; 
+    
+    printf("Array after insertion:\n");
+    for(i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    
+    return 0;
+}
+
+SOL68--
+
+#include <stdio.h>
+
+int main() {
+    int n, pos, i;
+    
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+    
+    int arr[n];
+    
+    printf("Enter %d elements:\n", n);
+    for(i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+    
+    printf("Enter position to delete (1 to %d): ", n);
+    scanf("%d", &pos);
+    
+    if(pos < 1 || pos > n) {
+        printf("Invalid position!\n");
+    } else {
+        for(i = pos - 1; i < n - 1; i++) {
+            arr[i] = arr[i + 1]; 
+        }
+        n--; 
+        printf("Array after deletion:\n");
+        for(i = 0; i < n; i++) {
+            printf("%d ", arr[i]);
+        }
+    }
+    
+    return 0;
+}
+ SOL 69--
+#include <stdio.h>
+#include <limits.h>
+
+int main() {
+    int n, i;
+    
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+    
+    int arr[n];
+    
+    printf("Enter %d elements:\n", n);
+    for(i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+    
+    int largest = INT_MIN, secondLargest = INT_MIN;
+    
+    for(i = 0; i < n; i++) {
+        if(arr[i] > largest) {
+            secondLargest = largest;
+            largest = arr[i];
+        } else if(arr[i] > secondLargest && arr[i] != largest) {
+            secondLargest = arr[i];
+        }
+    }
+    
+    if(secondLargest == INT_MIN) {
+        printf("No second largest element exists.\n");
+    } else {
+        printf("Second largest element: %d\n", secondLargest);
+    }
+    
+    return 0;
+}
+ SOL 70- 
+#include <stdio.h>
+
+int main() {
+    int n, k, i;
+    
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+    
+    int arr[n];
+    
+    printf("Enter %d elements:\n", n);
+    for(i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+    
+    printf("Enter number of positions to rotate: ");
+    scanf("%d", &k);
+    
+    k = k % n; // handle k > n
+    
+    // Rotate right using reversal method
+    int temp;
+    
+    // Step 1: Reverse whole array
+    for(i = 0; i < n / 2; i++) {
+        temp = arr[i];
+        arr[i] = arr[n - i - 1];
+        arr[n - i - 1] = temp;
+    }
+    
+    // Step 2: Reverse first k elements
+    for(i = 0; i < k / 2; i++) {
+        temp = arr[i];
+        arr[i] = arr[k - i - 1];
+        arr[k - i - 1] = temp;
+    }
+    
+    // Step 3: Reverse remaining n-k elements
+    for(i = k; i < (n + k) / 2; i++) {
+        temp = arr[i];
+        arr[i] = arr[n - i + k - 1];
+        arr[n - i + k - 1] = temp;
+    }
+    
+    printf("Array after rotation:\n");
+    for(i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
